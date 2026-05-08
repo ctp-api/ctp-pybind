@@ -315,6 +315,8 @@ onRtnTrade trade_id: 2025090800029227, order_id:        48977, price: 1286.0, vo
 
 **Pybind11**: 轻量级的 C++ 库，用于将 C++ 代码暴露（绑定）给 Python 解释器。它允许 Python 代码像调用普通 Python 模块一样，无缝地调用 C++ 编写的函数和类。其核心目标是提供一个极致简单、近乎零样板代码的接口，能轻松地将 C++ 的高性能计算能力与 Python 的易用性和庞大的生态系统结合起来。
 
+**参考**: [vnpy_ctp](https://github.com/vnpy/vnpy_ctp)
+
 ---
 
 *homalos-ctp*
