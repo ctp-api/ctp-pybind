@@ -54,7 +54,6 @@
 ├── 📁 README.md							# 项目中文说明文件
 ├── 📁 README_CN.md							# 项目英文说明文件
 ├── 📁 build.py								# 扩展模块自动化编译脚本，组装了 meson 命令
-├── 📁 hatch_build.py						# hatch 构建钩子，可用 hatch build 命令打包时设置平台标识
 ├── 📁 meson.build							# meson构建配置文件
 ├── 📁 pyproject.toml						# Python项目管理配置文件，由uv自动生成
 ├── 📁 util.py								# 公共工具
