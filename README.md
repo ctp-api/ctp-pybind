@@ -1,6 +1,15 @@
+<h1 align="center">ctp-pybind</h1>
+
+<p align="center">
+✨ One-Click Automated Compilation of CTP API C++ and Python Bindings ✨
+</p>
+
+
+
+
 <p align="center">
   English |
-  <a href="https://github.com/Homalos/ctp/blob/main/README_CN.md">简体中文</a>
+  <a href="README_CN.md">简体中文</a>
 </p>
 
 # Project Description

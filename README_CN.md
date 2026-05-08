@@ -1,6 +1,14 @@
+<h1 align="center">ctp-pybind</h1>
+
+<p align="center">
+✨ 一键实现自动编译 CTP API C++ 和 Python 接口的绑定 ✨
+</p>
+
+
+
 <p align="center">
   简体中文 |
-  <a href="https://github.com/Homalos/ctp/blob/main/README.md">English</a>
+  <a href="README.md">English</a>
 </p>
 
 # 项目说明
