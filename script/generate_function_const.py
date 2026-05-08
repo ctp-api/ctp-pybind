@@ -10,6 +10,7 @@
 @Description: 1. 第一步：生成API函数常量文件，请运行 main 函数
 """
 import datetime
+import os
 import re
 from pathlib import Path
 
@@ -127,6 +128,12 @@ class GeneratorFunctionConst:
 
 
 if __name__ == "__main__":
+    generator_dir = "../ctp/api/generator/"
+    # 确保目录存在
+    if not os.path.exists(generator_dir):
+        print(f"警告：目录 '{generator_dir}' 不存在，尝试创建...")
+        os.makedirs(generator_dir, exist_ok=True)
+
     md_const_generator = GeneratorFunctionConst(
         "../ctp/api/include/ThostFtdcMdApi.h",
         "ctp",

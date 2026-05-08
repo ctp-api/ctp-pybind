@@ -19,12 +19,12 @@ def delete_ctp_files():
     """
     删除当前目录中所有以ctp_开头的文件
     """
-    current_dir = os.path.dirname(os.path.abspath(__file__))
     generator_dir = "../ctp/api/generator/"
 
     # 确保目录存在
     if not os.path.exists(generator_dir):
-        print(f"错误：目录 '{generator_dir}' 不存在")
+        print(f"警告：目录 '{generator_dir}' 不存在，尝试创建...")
+        os.makedirs(generator_dir, exist_ok=True)
         return
 
     # 构建匹配模式 - 匹配所有以ctp_开头的文件
