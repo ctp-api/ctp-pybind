@@ -13,4 +13,6 @@ con
 .idea
 .git
 .mypy_cache
-
+dist
+hatch_build.py
+ctp/__version__.py

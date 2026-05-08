@@ -41,7 +41,6 @@
 │   │   ├── 📁 thosttraderapi_se.dll		# Windows CTP 交易 API 动态链接库
 │   │   └── 📁 thosttraderapi_se.so			# Linuxs CTP 交易 API 动态链接库
 │   ├── 📁 __init__.py						# CTP版本配置文件
-│   ├── 📁 __version__.py					# 项目版本配置文件
 │   └── 📁 ctp.h							# 任务处理及编码转换
 ├── 📂 demo/								# 项目相关文档
 │   ├── 📁 md_demo.py 						# 行情扩展模块使用示例
