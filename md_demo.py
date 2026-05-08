@@ -504,8 +504,8 @@ if __name__ == '__main__':
     # CTP配置（使用SimNow测试环境）
     # CTP configuration (using SimNow test environment)
     ctp_config = {
-        # "md_address": "tcp://182.254.243.31:30011",  # 行情服务器地址 Market server address
-        "md_address": "tcp://182.254.243.31:40011",  # 7x24行情服务器地址 Market server address
+        "md_address": "tcp://182.254.243.31:30011",  # 行情服务器地址 Market server address
+        # "md_address": "tcp://182.254.243.31:40011",  # 7x24行情服务器地址 Market server address
         "broker_id": "",  # 经纪商代码 Broker Code
         "user_id": "",  # 用户代码 User Code
         "password": "",  # password

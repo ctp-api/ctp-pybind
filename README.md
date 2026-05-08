@@ -89,7 +89,7 @@ On Linux
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-2. Install Python (Perform this step with Method 1, skip this with Method 2). I use 3.13.6; you can install your preferred version.
+2. Install Python (Perform this step with Method 1, skip this with Method 2). you can install your preferred version.
 
 ```bash
 uv python install 3.13
@@ -109,7 +109,6 @@ pip install homalos-ctp
 # Use uv to create a Python virtual environment with a specified version in the current project.
 
 uv venv --python 3.13 .venv
-
 ```
 
 ```bash
@@ -120,7 +119,6 @@ uv add meson-python
 uv add pybind11
 
 uv add pybind11-stubgen
-
 ```
 
 2. Execute the one-click build script in the `generator` directory (to generate Python bindings for the CTP C++ API)
