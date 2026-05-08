@@ -15,7 +15,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from ctp.api import MdApi
+from ctp.api.ctpmd import MdApi
 from ctp.api.custom_constant import CtpConst
 from util import prepare_address
 
@@ -506,7 +506,7 @@ if __name__ == '__main__':
     ctp_config = {
         "md_address": "tcp://182.254.243.31:30011",  # 行情服务器地址 Market server address
         # "md_address": "tcp://182.254.243.31:40011",  # 7x24行情服务器地址 Market server address
-        "broker_id": "",  # 经纪商代码 Broker Code
+        "broker_id": "9999",  # 经纪商代码 Broker Code
         "user_id": "",  # 用户代码 User Code
         "password": "",  # password
         "appid": "simnow_client_test",
@@ -523,8 +523,8 @@ if __name__ == '__main__':
     # 订阅一些常用的期货合约（SimNow模拟环境中的活跃合约）
     # Subscribe to some commonly used futures contracts (active contracts in the SimNow simulation environment)
     contracts_to_subscribe = [
-        "SA601",
-        "FG601"
+        "SA609",
+        "FG609"
     ]
 
     # 订阅合约的tick数量

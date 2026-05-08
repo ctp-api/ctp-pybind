@@ -15,7 +15,7 @@ import traceback
 from pathlib import Path
 from typing import SupportsInt
 
-from ctp.api import TdApi
+from ctp.api.ctptd import TdApi
 from ctp.api.ctp_constant import THOST_FTDC_OPT_LimitPrice, THOST_FTDC_D_Buy, THOST_FTDC_D_Sell, \
     THOST_FTDC_OF_CloseToday, THOST_FTDC_CC_Immediately, THOST_FTDC_HF_Speculation, THOST_FTDC_FCC_NotForceClose, \
     THOST_FTDC_TC_GFD, THOST_FTDC_VC_AV, THOST_FTDC_AF_Delete, THOST_FTDC_OST_Unknown, THOST_FTDC_OST_AllTraded, \
@@ -738,8 +738,8 @@ if __name__ == '__main__':
         "td_address": "tcp://182.254.243.31:30001",  # 交易服务器地址 Trade server address
         # "td_address": "tcp://182.254.243.31:40001",  # 7x24易服务器地址 Trade server address
         "broker_id": "9999",  # 经纪商代码 Broker Code
-        "user_id": "160219",  # 用户代码 User Code
-        "password": "Donny$1991",  # password
+        "user_id": "",  # 用户代码 User Code
+        "password": "",  # password
         "appid": "simnow_client_test",
         "auth_code": "0000000000000000"
     }
@@ -753,7 +753,7 @@ if __name__ == '__main__':
 
     # 报单一些常用的期货合约（SimNow模拟环境中的活跃合约）
     print("\n🚀 开始下单测试...")
-    ret_order_id = trader.send_order("SA601", "BUY_OPEN", 1358, 1)
+    ret_order_id = trader.send_order("SA609", "BUY_OPEN", 1358, 1)
     print(f"下单完成，订单号: {ret_order_id}")
     
     # 等待一段时间观察订单状态
