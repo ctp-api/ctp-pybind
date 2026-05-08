@@ -7,7 +7,7 @@
 @Author     : Lumosylva
 @Email      : donnymoving@gmail.com
 @Software   : PyCharm
-@Description: 公共工具
+@Description: 公共函数
 """
 
 def prepare_address(address: str) -> str:

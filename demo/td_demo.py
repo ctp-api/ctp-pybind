@@ -22,7 +22,7 @@ from ctp.api.ctp_constant import THOST_FTDC_OPT_LimitPrice, THOST_FTDC_D_Buy, TH
     THOST_FTDC_OST_PartTradedQueueing, THOST_FTDC_OST_PartTradedNotQueueing, THOST_FTDC_OST_NoTradeQueueing, \
     THOST_FTDC_OST_NoTradeNotQueueing, THOST_FTDC_OST_Canceled, THOST_TERT_QUICK
 from ctp.api.custom_constant import CtpConst
-from util import prepare_address
+from demo.util import prepare_address
 
 
 

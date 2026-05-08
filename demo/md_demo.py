@@ -17,7 +17,7 @@ from typing import Any
 
 from ctp.api.ctpmd import MdApi
 from ctp.api.custom_constant import CtpConst
-from util import prepare_address
+from demo.util import prepare_address
 
 
 class CtpMdApi(MdApi):
