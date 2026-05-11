@@ -102,13 +102,15 @@ uv python install 3.13
 
 ## 4. 使用
 
-### 4.1 命令安装
+### 4.1 方式一，命令安装
 
 ```bash
+uv add homalos-ctp
+# 或
 pip install homalos-ctp
 ```
 
-### 4.2 源码安装
+### 4.2 方式二，源码安装
 
 下载本项目 Release 源码或者 `git clone`
 
@@ -313,7 +315,7 @@ onRtnTrade trade_id: 2025090800029227, order_id:        48977, price: 1286.0, vo
 
 ## 10. 免责声明
 
-👈**[免责声明内容](docs/免责声明.md)**
+👈[免责声明内容](docs/免责声明.md)
 
 ## 11. 补充
 
@@ -325,6 +327,6 @@ onRtnTrade trade_id: 2025090800029227, order_id:        48977, price: 1286.0, vo
 
 ---
 
-*homalos-ctp*
-*最后更新：2026-05-08*
+*ctp-pybind*
+*最后更新：2026-05-11*
 
