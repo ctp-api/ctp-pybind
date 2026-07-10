@@ -12,7 +12,7 @@
 """
 
 
-class CtpConst(object):
+class CtpConst:
 
     # reason mapping
     REASON_MAPPING = {

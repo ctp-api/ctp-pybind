@@ -1,7 +1,7 @@
 project(
   'homalos-ctp',
   'cpp',
-  version: '6.7.11.1',
+  version: '6.7.11.6',
   license: 'MIT',
   meson_version: '>=1.9.0',
   default_options: [
@@ -36,14 +36,6 @@ thostmduserapi_lib = []
 thosttraderapi_lib = []
 extra_cpp_args = []
 extra_link_args = []
-
-# 初始化库变量
-thostmduserapi_lib = []
-thosttraderapi_lib = []
-
-# 初始化其他编译选项
-extra_link_args = []
-install_rpath_value = ''
 api_abs_dir = 'ctp/api'
 
 # 设置Windows特定编译选项

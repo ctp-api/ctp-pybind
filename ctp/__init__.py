@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 @ProjectName: homalos-ctp
-@FileName   : __init__.py.py
+@FileName   : __init__.py
 @Date       : 2025/8/26 17:34
 @Author     : Donny
 @Email      : donnymoving@gmail.com

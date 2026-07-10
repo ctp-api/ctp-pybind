@@ -15,29 +15,20 @@ def check_and_install_stubgen():
         import mesonbuild
         print("meson-python 已安装")
     except ImportError:
-        print("未找到 meson-python，正在尝试安装...")
-        ret = subprocess.run(['uv', 'add', 'meson-python'])
-        if ret.returncode != 0:
-            print("安装 meson-python 失败，请手动安装后再试")
-            return False
+        print("错误: meson-python 未安装，请先安装: uv add meson-python")
+        return False
     try:
         import pybind11
         print("pybind11 已安装")
     except ImportError:
-        print("未找到 pybind11，正在尝试安装...")
-        ret = subprocess.run(['uv', 'add', 'pybind11'])
-        if ret.returncode != 0:
-            print("安装 pybind11 失败，请手动安装后再试")
-            return False
+        print("错误: pybind11 未安装，请先安装: uv add pybind11")
+        return False
     try:
         import pybind11_stubgen
         print("pybind11-stubgen 已安装")
     except ImportError:
-        print("未找到 pybind11-stubgen，正在尝试安装...")
-        ret = subprocess.run(['uv', 'add', 'pybind11-stubgen'])
-        if ret.returncode != 0:
-            print("安装 pybind11-stubgen 失败，请手动安装后再试")
-            return False
+        print("错误: pybind11-stubgen 未安装，请先安装: uv add pybind11-stubgen")
+        return False
 
     return True
 

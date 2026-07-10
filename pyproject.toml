@@ -8,13 +8,8 @@ authors = [
     { name = "Lumosylva", email = "donnymoving@gmail.com" },
 ]
 requires-python = ">=3.13"
-dependencies = [
-    "hatch>=1.14.1",
-    "meson-python>=0.18.0",
-    "pybind11>=3.0.1",
-    "pybind11-stubgen>=2.5.5",
-    "twine>=6.1.0",
-]
+dependencies = []
+
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -22,9 +17,6 @@ classifiers = [
     "Operating System :: POSIX :: Linux",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Office/Business :: Financial :: Investment",
@@ -32,6 +24,13 @@ classifiers = [
 ]
 
 keywords = ["ctp", "quantitative", "trading", "investment"]
+
+[project.optional-dependencies]
+dev = [
+    "hatch>=1.14.1",
+    "pybind11-stubgen>=2.5.5",
+    "twine>=6.1.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/Homalos/ctp"
@@ -41,7 +40,7 @@ Issues = "https://github.com/Homalos/ctp/issues"
 "Documentation (中文)" = "https://github.com/Homalos/ctp/blob/main/README_CN.md"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "meson-python>=0.18.0", "pybind11>=3.0.1"]
 build-backend = "hatchling.build"
 
 [tool.hatch.version]
@@ -59,7 +58,7 @@ class-name = "CustomBuildHook"
 include = [
     "ctp",
     "build.py",
-    "demo.py",
+    "demo",
     "LICENSE",
     "README.md",
     "README_CN.md",
@@ -90,12 +89,7 @@ artifacts = [
 [tool.hatch.build.targets.wheel]
 packages = [
     "ctp",
-    "build.py",
-    "demo.py",
-    "LICENSE",
-    "README.md",
-    "README_CN.md",
-    "docs"
+    "demo",
 ]
 # 排除不需要的文件
 exclude = [
@@ -113,8 +107,4 @@ exclude = [
 artifacts = [
     "ctp/api/*.pyd",
     "ctp/api/*.so",
-    "LICENSE",
-    "README.md",
-    "README_CN.md",
-    "docs/**/*",
 ]

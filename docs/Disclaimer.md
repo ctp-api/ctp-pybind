@@ -5,7 +5,7 @@
 
 # Disclaimer
 
-**Last updated**: July 10, 2027
+**Last updated**: July 10, 2026
 
 **Effective date**: Effective upon initial publication
 

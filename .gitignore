@@ -15,4 +15,4 @@ con
 .mypy_cache
 dist
 hatch_build.py
-ctp/__version__.py
+/.mimocode/.cron-lock

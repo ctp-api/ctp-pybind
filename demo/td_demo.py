@@ -50,8 +50,8 @@ class CtpTdApi(TdApi):
         
         # 订单状态跟踪字典  Order Status Tracking Dictionary
         self.order_status_map: dict = {}
-        # 测试的合约，纯碱SA601  Tested contract, soda ash SA601
-        self.symbol_map: dict = {"SA601": "CZCE"}
+        # 测试的合约，纯碱SA601/SA609  Tested contract, soda ash SA601/SA609
+        self.symbol_map: dict = {"SA601": "CZCE", "SA609": "CZCE"}
         
         # 订单状态常量映射  Order Status Constant Mapping
         self.order_status_names = {
@@ -526,6 +526,9 @@ class CtpTdApi(TdApi):
         self.order_ref += 1
 
         exchange_id = self.symbol_map.get(symbol)
+        if not exchange_id:
+            print(f"不支持的合约：{symbol}，请在symbol_map中配置交易所代码")
+            return ""
 
         if direction == "BUY_OPEN":
             direction_field = THOST_FTDC_D_Buy  # 买卖方向
@@ -647,7 +650,7 @@ class CtpTdApi(TdApi):
             self.exit()
 
 
-class OrderTrader(object):
+class OrderTrader:
 
     def __init__(self) -> None:
         # 交易接口实例
@@ -737,8 +740,8 @@ if __name__ == '__main__':
     # CTP配置（使用SimNow测试环境）
     # CTP configuration (using SimNow test environment)
     ctp_config = {
-        "td_address": "tcp://182.254.243.31:30001",  # 交易服务器地址 Trade server address
-        # "td_address": "tcp://182.254.243.31:40001",  # 7x24易服务器地址 Trade server address
+        # "td_address": "tcp://182.254.243.31:30001",  # 交易服务器地址 Trade server address
+        "td_address": "tcp://182.254.243.31:40001",  # 7x24易服务器地址 Trade server address
         "broker_id": "9999",  # 经纪商代码 Broker Code
         "user_id": "",  # 用户代码 User Code
         "password": "",  # password
@@ -772,7 +775,7 @@ if __name__ == '__main__':
     # trader.get_order_status_summary()
 
     try:
-        # 保持程序运行60秒来观察订单状态变化待) ❌(失败)")
+        # 保持程序运行60秒来观察订单状态变化
 
         for i in range(12):  # 60秒分成12个5秒间隔
             time.sleep(5)

@@ -104,9 +104,9 @@ uv python install 3.13
 ### 4.1 方式一，命令安装
 
 ```bash
-uv add ctp-pybind
+uv add homalos-ctp
 # 或
-pip install ctp-pybind
+pip install homalos-ctp
 ```
 
 ### 4.2 方式二，源码安装
@@ -118,6 +118,9 @@ pip install ctp-pybind
 ```bash
 # 根目录下执行，将项目的依赖项与环境同步(同步Python版本及第三方依赖)
 uv sync
+
+# 开发环境（构建工具）
+uv sync --extra dev
 ```
 
 #### 4.2.2 生成 CTP API 组装文件

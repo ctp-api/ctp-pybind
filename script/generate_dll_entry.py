@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 @ProjectName: homalos-ctp
-@FileName   : generate_api_functions.py
+@FileName   : generate_dll_entry.py
 @Date       : 2025/8/27 14:53
 @Author     : Donny
 @Email      : donnymoving@gmail.com

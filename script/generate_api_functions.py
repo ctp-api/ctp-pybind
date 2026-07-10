@@ -17,9 +17,16 @@
 """
 import importlib
 import re
+import sys
+from pathlib import Path
+
+# 添加generator目录到sys.path，以便导入生成的模块
+generator_dir = str(Path(__file__).resolve().parent.parent / "ctp" / "api" / "generator")
+if generator_dir not in sys.path:
+    sys.path.insert(0, generator_dir)
 
 from ctp import ctp_version
-from script.ctp_function_const import CtpFunctionConst  # noqa
+from ctp_function_const import CtpFunctionConst  # noqa
 from script.generate_helper import replace_function_name, process_func_type, format_pointer_arg, \
     format_equal_arg
 
@@ -346,52 +353,29 @@ class GenerateApiFunc:
 
                         for arg_name, arg_type in func_info['func_args'].items():
                             # 特殊变量名的处理
-                            if ctp_version == "6.7.11":
-                                if arg_type.endswith("Field"):
-                                    self.source_functions[func_name]['func_field'] = arg_type
-                                    converted_arg_types.append("const dict &req")
-                                elif arg_name == "nRequestID" and arg_type == "int":
-                                    converted_arg_types.append("int reqid")
-                                elif arg_name == "pszFlowPath=\"\"" and arg_type == "const char":
-                                    converted_arg_types.append("string pszFlowPath=\"\"")
-                                elif arg_name == "bIsUsingUdp=false" and arg_type == "const bool":
-                                    converted_arg_types.append("bool bIsUsingUdp=false")
-                                elif arg_name == "bIsMulticast=false" and arg_type == "const bool":
-                                    converted_arg_types.append("bool bIsMulticast=false")
-                                elif arg_name == "bIsProductionMode=true" and arg_type == "bool":
-                                    converted_arg_types.append("bool bIsProductionMode=true")
-                                elif arg_name == "pszFrontAddress" and arg_type == "char":
-                                    converted_arg_types.append("string pszFrontAddress")
-                                elif arg_name == "pszNsAddress" and arg_type == "char":
-                                    converted_arg_types.append("string pszNsAddress")
-                                elif arg_name == "ppInstrumentID[]" and arg_type == "char":
-                                    converted_arg_types.append("string instrumentID")
-                                elif arg_name == "nResumeType" and arg_type == "THOST_TE_RESUME_TYPE":
-                                    # source_functions func_args 中保留旧的参数类型 {'nType': 'THOST_TE_RESUME_TYPE'}
-                                    self.source_functions[func_name]['func_args']['nType'] = arg_type
-                                    converted_arg_types.append("int nType")
-                            else:
-                                if arg_type.endswith("Field"):
-                                    self.source_functions[func_name]['func_field'] = arg_type
-                                    converted_arg_types.append("const dict &req")
-                                elif arg_name == "nRequestID" and arg_type == "int":
-                                    converted_arg_types.append("int reqid")
-                                elif arg_name == "pszFlowPath=\"\"" and arg_type == "const char":
-                                    converted_arg_types.append("string pszFlowPath=\"\"")
-                                elif arg_name == "bIsUsingUdp=false" and arg_type == "const bool":
-                                    converted_arg_types.append("bool bIsUsingUdp=false")
-                                elif arg_name == "bIsMulticast=false" and arg_type == "const bool":
-                                    converted_arg_types.append("bool bIsMulticast=false")
-                                elif arg_name == "pszFrontAddress" and arg_type == "char":
-                                    converted_arg_types.append("string pszFrontAddress")
-                                elif arg_name == "pszNsAddress" and arg_type == "char":
-                                    converted_arg_types.append("string pszNsAddress")
-                                elif arg_name == "ppInstrumentID[]" and arg_type == "char":
-                                    converted_arg_types.append("string instrumentID")
-                                elif arg_name == "nResumeType" and arg_type == "THOST_TE_RESUME_TYPE":
-                                    # source_functions func_args 中保留旧的参数类型 {'nType': 'THOST_TE_RESUME_TYPE'}
-                                    self.source_functions[func_name]['func_args']['nType'] = arg_type
-                                    converted_arg_types.append("int nType")
+                            if arg_type.endswith("Field"):
+                                self.source_functions[func_name]['func_field'] = arg_type
+                                converted_arg_types.append("const dict &req")
+                            elif arg_name == "nRequestID" and arg_type == "int":
+                                converted_arg_types.append("int reqid")
+                            elif arg_name == "pszFlowPath=\"\"" and arg_type == "const char":
+                                converted_arg_types.append("string pszFlowPath=\"\"")
+                            elif arg_name == "bIsUsingUdp=false" and arg_type == "const bool":
+                                converted_arg_types.append("bool bIsUsingUdp=false")
+                            elif arg_name == "bIsMulticast=false" and arg_type == "const bool":
+                                converted_arg_types.append("bool bIsMulticast=false")
+                            elif arg_name == "bIsProductionMode=true" and arg_type == "bool":
+                                converted_arg_types.append("bool bIsProductionMode=true")
+                            elif arg_name == "pszFrontAddress" and arg_type == "char":
+                                converted_arg_types.append("string pszFrontAddress")
+                            elif arg_name == "pszNsAddress" and arg_type == "char":
+                                converted_arg_types.append("string pszNsAddress")
+                            elif arg_name == "ppInstrumentID[]" and arg_type == "char":
+                                converted_arg_types.append("string instrumentID")
+                            elif arg_name == "nResumeType" and arg_type == "THOST_TE_RESUME_TYPE":
+                                # source_functions func_args 中保留旧的参数类型 {'nType': 'THOST_TE_RESUME_TYPE'}
+                                self.source_functions[func_name]['func_args']['nType'] = arg_type
+                                converted_arg_types.append("int nType")
 
                         # 处理转换后的参数并更新 source_functions
                         for arg in converted_arg_types:

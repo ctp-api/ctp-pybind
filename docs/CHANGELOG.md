@@ -9,6 +9,22 @@
 - **功能**：更新文件描述和文档内容。
 - **功能**：更新免责声明文档，使用新的项目名称和日期。
 - **功能**：刷新所有文档文件的最后更新时间戳。
+- **功能**：修复pyproject.toml中构建工具作为运行时依赖的问题。
+- **功能**：修复版本号不一致问题（meson.build、__version__.py、CHANGELOG.md）。
+- **功能**：修复pyproject.toml中引用不存在的demo.py文件。
+- **功能**：移除demo/md_demo.py中硬编码的密码。
+- **功能**：修复docs/Disclaimer.md中的日期错误（2027->2026）。
+- **功能**：修复ctp.h中的缓冲区溢出风险、数据竞争问题，移除using namespace pybind11污染。
+- **功能**：修复hatch_build.py中使用os.getcwd()而非self.root的路径问题。
+- **功能**：修复script/generate_dll_entry.py和generate_data_type.py中的文件名注释错误。
+- **功能**：修复ctp/__init__.py中的文件名注释错误。
+- **功能**：移除旧式类继承（object）。
+- **功能**：修复demo/td_demo.py中的损坏注释。
+- **功能**：移除重复的ctp/ctp.h文件。
+- **功能**：修复.gitignore中排除hatch_build.py和__version__.py的问题。
+- **功能**：重构script/generate_api_functions.py中的重复代码。
+- **功能**：修复build.py自动安装依赖的问题。
+- **功能**：修复generate_struct.py和generate_api_functions.py中模块导入路径问题。
 
 ------
 
@@ -19,6 +35,22 @@
 - **Feature:** Updated file descriptions and documentation content.
 - **Feature:** Updated disclaimer document with new project name and dates.
 - **Feature:** Refreshed last updated timestamps across all documentation files.
+- **Feature:** Fixed build tools being listed as runtime dependencies in pyproject.toml.
+- **Feature:** Fixed version inconsistency across meson.build, __version__.py, and CHANGELOG.md.
+- **Feature:** Fixed non-existent demo.py file reference in pyproject.toml.
+- **Feature:** Removed hardcoded password from demo/md_demo.py.
+- **Feature:** Fixed date typo in docs/Disclaimer.md (2027->2026).
+- **Feature:** Fixed buffer overflow, data race issues in ctp.h, removed using namespace pybind11 pollution.
+- **Feature:** Fixed path resolution in hatch_build.py using self.root instead of os.getcwd().
+- **Feature:** Fixed incorrect filename in docstrings for generate_dll_entry.py and generate_data_type.py.
+- **Feature:** Fixed incorrect filename in ctp/__init__.py docstring.
+- **Feature:** Removed old-style class inheritance (object).
+- **Feature:** Fixed broken comment in demo/td_demo.py.
+- **Feature:** Removed duplicate ctp/ctp.h file.
+- **Feature:** Fixed .gitignore excluding hatch_build.py and __version__.py.
+- **Feature:** Refactored duplicated code in script/generate_api_functions.py.
+- **Feature:** Fixed build.py auto-installing dependencies via uv add.
+- **Feature:** Fixed module import path issues in generate_struct.py and generate_api_functions.py.
 
 ## v6.7.11.5
 

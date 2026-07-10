@@ -14,6 +14,8 @@
 3. 解析C++结构体定义，生成Python字典格式的结构体定义文件 `ctp_struct.py`
 """
 import importlib
+import sys
+from pathlib import Path
 
 
 class StructGenerator:
@@ -24,6 +26,11 @@ class StructGenerator:
         self.typedefs: dict[str, str] = {}
         self.f_cpp = None
         self.f_struct = None
+
+        # 添加generator目录到sys.path，以便导入生成的模块
+        generator_dir = str(Path(__file__).resolve().parent.parent / "ctp" / "api" / "generator")
+        if generator_dir not in sys.path:
+            sys.path.insert(0, generator_dir)
 
         self.load_constant()
 

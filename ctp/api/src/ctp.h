@@ -2,6 +2,7 @@
 #include <queue>
 #include <thread>
 #include <mutex>
+#include <atomic>
 #include <iostream>
 #include <codecvt>
 #include <condition_variable>
@@ -13,19 +14,16 @@
 
 #include "pybind11/pybind11.h"
 
-
 using namespace std;
-using namespace pybind11;
 
-
-//任务结构体
+// Task structure
 struct Task
 {
-    int task_name;		//回调函数名称对应的常量
-    void *task_data;	//数据指针
-    void *task_error;	//错误指针
-    int task_id;		//请求id
-    bool task_last;		//是否为最后返回
+    int task_name;		// Callback function type
+    void *task_data;	// Data pointer
+    void *task_error;	// Error pointer
+    int task_id;		// Request ID
+    bool task_last;		// Is it the last return
 };
 
 class TerminatedError : std::exception
@@ -34,73 +32,73 @@ class TerminatedError : std::exception
 class TaskQueue
 {
 private:
-    queue<Task> queue_;						//标准库队列
-    mutex mutex_;							//互斥锁
-    condition_variable cond_;				//条件变量
+    std::queue<Task> queue_;					// Task queue
+    std::mutex mutex_;							// Mutex
+    std::condition_variable cond_;				// Condition variable
 
-    bool _terminate = false;
+    std::atomic<bool> _terminate{false};
 
 public:
 
-    //存入新的任务
+    // Push new task
     void push(const Task &task)
     {
-        unique_lock<mutex > mlock(mutex_);
-        queue_.push(task);					//向队列中存入数据
-        mlock.unlock();						//释放锁
-        cond_.notify_one();					//通知正在阻塞等待的线程
+        std::unique_lock<std::mutex> mlock(mutex_);
+        queue_.push(task);					// Write task to queue
+        mlock.unlock();						// Release lock
+        cond_.notify_one();					// Notify waiting threads
     }
 
-    //取出老的任务
+    // Get task from queue
     Task pop()
     {
-        unique_lock<mutex> mlock(mutex_);
+        std::unique_lock<std::mutex> mlock(mutex_);
         cond_.wait(mlock, [&]() {
             return !queue_.empty() || _terminate;
-        });				//等待条件变量通知
+        });				// Wait for notification
         if (_terminate)
             throw TerminatedError();
-        Task task = queue_.front();			//获取队列中的最后一个任务
-        queue_.pop();						//删除该任务
-        return task;						//返回该任务
+        Task task = queue_.front();			// Get first task from queue
+        queue_.pop();						// Remove from queue
+        return task;						// Return task
     }
 
     void terminate()
     {
         _terminate = true;
-        cond_.notify_all();					//通知正在阻塞等待的线程
+        cond_.notify_all();					// Notify all waiting threads
     }
 };
 
 
-//从字典中获取某个建值对应的整数，并赋值到请求结构体对象的值上
-void getInt(const dict &d, const char *key, int *value)
+// Get integer value from dict
+void getInt(const pybind11::dict &d, const char *key, int *value)
 {
-    if (d.contains(key))		//检查字典中是否存在该键值
+    if (d.contains(key))		// Check if key exists
     {
-        object o = d[key];		//获取该键值
+        pybind11::object o = d[key];		// Get value
         *value = o.cast<int>();
     }
 };
 
 
-//从字典中获取某个建值对应的浮点数，并赋值到请求结构体对象的值上
-void getDouble(const dict &d, const char *key, double *value)
+// Get double value from dict
+void getDouble(const pybind11::dict &d, const char *key, double *value)
 {
     if (d.contains(key))
     {
-        object o = d[key];
+        pybind11::object o = d[key];
         *value = o.cast<double>();
     }
 };
 
 
-//从字典中获取某个建值对应的字符，并赋值到请求结构体对象的值上
-void getChar(const dict &d, const char *key, char *value)
+// Get char value from dict
+void getChar(const pybind11::dict &d, const char *key, char *value)
 {
     if (d.contains(key))
     {
-        object o = d[key];
+        pybind11::object o = d[key];
         *value = o.cast<char>();
     }
 };
@@ -109,81 +107,70 @@ void getChar(const dict &d, const char *key, char *value)
 template <size_t size>
 using string_literal = char[size];
 
-//从字典中获取某个建值对应的字符串，并赋值到请求结构体对象的值上
+// Get string value from dict
 template <size_t size>
 void getString(const pybind11::dict &d, const char *key, string_literal<size> &value)
 {
     if (d.contains(key))
     {
-        object o = d[key];
-        string s = o.cast<string>();
+        pybind11::object o = d[key];
+        std::string s = o.cast<std::string>();
         const char *buf = s.c_str();
-        strcpy(value, buf);
+        strncpy(value, buf, size - 1);
+        value[size - 1] = '\0';
     }
 };
 
 
-//将GBK编码的字符串转换为UTF8
+// Convert GBK string to UTF8
 #ifndef __APPLE__
-inline string toUtf(const string &gb2312)
+inline std::string toUtf(const std::string &gb2312)
 {
 
     #ifdef _MSC_VER
-        const static locale loc("zh-CN");
+        const static std::locale loc("zh-CN");
     #else
-        const static locale loc("zh_CN.GB18030");
+        const static std::locale loc("zh_CN.GB18030");
     #endif
 
-        vector<wchar_t> wstr(gb2312.size());
+        std::vector<wchar_t> wstr(gb2312.size());
         wchar_t* wstrEnd = nullptr;
         const char* gbEnd = nullptr;
         mbstate_t state = {};
-        int res = use_facet<codecvt<wchar_t, char, mbstate_t> >
+        int res = std::use_facet<std::codecvt<wchar_t, char, mbstate_t> >
             (loc).in(state,
                 gb2312.data(), gb2312.data() + gb2312.size(), gbEnd,
                 wstr.data(), wstr.data() + wstr.size(), wstrEnd);
 
-        if (codecvt_base::ok == res)
+        if (std::codecvt_base::ok == res)
         {
-            wstring_convert<codecvt_utf8<wchar_t>> cutf8;
-            return cutf8.to_bytes(wstring(wstr.data(), wstrEnd));
+            std::wstring_convert<std::codecvt_utf8<wchar_t>> cutf8;
+            return cutf8.to_bytes(std::wstring(wstr.data(), wstrEnd));
         }
 
-        return string();
+        return std::string();
 }
 #else
-iconv_t cd = iconv_open("UTF-8", "GB2312");
-
-int code_convert(char *inbuf, size_t inlen, char *outbuf, size_t outlen) 
+inline std::string toUtf(const std::string &gb2312)
 {
-    char **pin = &inbuf;
-    char **pout = &outbuf;
-
-    memset(outbuf, 0, outlen);
-
-    if ((int)iconv(cd, pin, &inlen, pout, &outlen) == -1)
-    {
-        return -1;
-    }
-    *pout = "\0";
-
-    return 0;
-}
-
-inline string toUtf(const string &gb2312)
-{
-    int length = gb2312.size() * 2 + 1;
-    char temp[length];
-
-    int n = code_convert((char*)gb2312.c_str(), gb2312.size(), temp, length);
-
-    if(n == 0)
-    {
-        return temp;
-    }
-    else
-    {
+    iconv_t cd = iconv_open("UTF-8", "GB2312");
+    if (cd == (iconv_t)-1) {
         return "";
     }
+
+    size_t inlen = gb2312.size();
+    size_t outlen = inlen * 2 + 1;
+    std::vector<char> temp(outlen, 0);
+
+    char *inbuf = const_cast<char*>(gb2312.c_str());
+    char *outbuf = temp.data();
+
+    if (iconv(cd, &inbuf, &inlen, &outbuf, &outlen) == (size_t)-1) {
+        iconv_close(cd);
+        return "";
+    }
+    iconv_close(cd);
+
+    return std::string(temp.data());
 }
 #endif
