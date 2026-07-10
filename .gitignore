@@ -8,6 +8,10 @@ wheels/
 
 # Virtual environments
 .venv
+.venv-build-310
+.venv-build-311
+.venv-build-312
+.venv-build-313
 
 con
 .idea
@@ -16,3 +20,6 @@ con
 dist
 hatch_build.py
 /.mimocode/.cron-lock
+
+build_all.bat
+/build_all.py
