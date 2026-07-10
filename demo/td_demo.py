@@ -767,7 +767,7 @@ if __name__ == '__main__':
 
     # # 如果需要测试撤单，可以取消注释下面的代码
     # print("\n🛑 测试撤单...")
-    # trader.cancel_order("SA601")
+    # trader.cancel_order("SA609")
     # time.sleep(2)
     # trader.get_order_status_summary()
 
