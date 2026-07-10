@@ -25,6 +25,8 @@
 - **功能**：重构script/generate_api_functions.py中的重复代码。
 - **功能**：修复build.py自动安装依赖的问题。
 - **功能**：修复generate_struct.py和generate_api_functions.py中模块导入路径问题。
+- **功能**：支持Python 3.10-3.13多版本打包发布。
+- **功能**：新增多版本批量构建脚本build_all.py，使用hatch build打包。
 
 ------
 
@@ -51,6 +53,8 @@
 - **Feature:** Refactored duplicated code in script/generate_api_functions.py.
 - **Feature:** Fixed build.py auto-installing dependencies via uv add.
 - **Feature:** Fixed module import path issues in generate_struct.py and generate_api_functions.py.
+- **Feature:** Added support for Python 3.10-3.13 multi-version packaging.
+- **Feature:** Added multi-version build script build_all.py using hatch build.
 
 ## v6.7.11.5
 
