@@ -50,21 +50,20 @@
 │   │   └── 📁 thosttraderapi_se.so			# Linuxs CTP 交易 API 动态链接库
 │   ├── 📁 __init__.py						# CTP版本配置文件
 │   └── 📁 ctp.h							# 任务处理及编码转换
-├── 📂 demo/								# 项目相关文档
+├── 📂 demo/								# 使用示例
 │   ├── 📁 md_demo.py 						# 行情扩展模块使用示例
 │   ├── 📁 td_demo.py 						# 交易扩展模块使用示例
 │   └── 📁 util.py							# demo 公共函数
-├── 📂 docs/								# 项目相关文档
-├── 📂 script/								# 自动化脚本
+├── 📂 docs/								# 项目文档
+├── 📂 script/								# 绑定生成脚本
 ├── 📁 .gitignore							# git提交忽略文件，由uv自动生成
 ├── 📁 .python-version						# 项目Python版本文件，由uv自动生成
 ├── 📁 LICENSE								# 项目License文件
-├── 📁 README.md							# 项目中文说明文件
-├── 📁 README_CN.md							# 项目英文说明文件
+├── 📁 README.md							# 项目英文说明文件
+├── 📁 README_CN.md							# 项目中文说明文件
 ├── 📁 build.py								# 扩展模块自动化编译脚本，组装了 meson 命令
 ├── 📁 meson.build							# meson构建配置文件
 ├── 📁 pyproject.toml						# Python项目管理配置文件，由uv自动生成
-├── 📁 util.py								# 公共工具
 └── 📁 uv.lock								# uv锁定文件，由uv自动生成
 ```
 
@@ -105,9 +104,9 @@ uv python install 3.13
 ### 4.1 方式一，命令安装
 
 ```bash
-uv add homalos-ctp
+uv add ctp-pybind
 # 或
-pip install homalos-ctp
+pip install ctp-pybind
 ```
 
 ### 4.2 方式二，源码安装
@@ -125,7 +124,7 @@ uv sync
 
 ```bash
 .venv\Scripts\activate
-cd ctp\api\generator
+cd script
 # 一键生成所有CTP API组装文件
 python generate_all.py
 ```
@@ -226,7 +225,7 @@ onRtnTrade trade_id: 2025090800029227, order_id:        48977, price: 1286.0, vo
 
 ## 6. 脚本功能说明
 
-本节内容只面向对生成绑定过程感兴趣的研究者，如果只需要生成绑定文件，则无需阅读这些内容，generator脚本位于`ctp/api/generator/` 目录下。
+本节内容只面向对生成绑定过程感兴趣的研究者，如果只需要生成绑定文件，则无需阅读这些内容，generator脚本位于`script/` 目录下。
 
 ### 6.1 `generator_function_const.py`
 
@@ -311,7 +310,7 @@ onRtnTrade trade_id: 2025090800029227, order_id:        48977, price: 1286.0, vo
 ## 9. 社区支持
 
 - [![QQ Group](https://img.shields.io/badge/QQ%20Group%231-Join-blue)](https://qun.qq.com/universal-share/share?ac=1&authKey=dzGDk%2F%2Bpy%2FwpVyR%2BTrt9%2B5cxLZrEHL793cZlFWvOXuV5I8szMnOU4Wf3ylap7Ph0&busi_data=eyJncm91cENvZGUiOiI0NDYwNDI3NzciLCJ0b2tlbiI6IlFrM0ZhZmRLd0xIaFdsZE9FWjlPcHFwSWxBRFFLY2xZbFhaTUh4K2RldisvcXlBckZ4NVIrQzVTdDNKUFpCNi8iLCJ1aW4iOiI4MjEzMDAwNzkifQ%3D%3D&data=O1Bf7_yhnvrrLsJxc3g5-p-ga6TWx6EExnG0S1kDNJTyK4sV_Nd9m4p-bkG4rhj_5TdtS5lMjVZRBv4amHyvEA&svctype=4&tempid=h5_group_info)
-- [pypi.org](https://pypi.org/project/homalos-ctp)
+- [pypi.org](https://pypi.org/project/ctp-pybind)
 
 ## 10. 免责声明
 
@@ -328,5 +327,5 @@ onRtnTrade trade_id: 2025090800029227, order_id:        48977, price: 1286.0, vo
 ---
 
 *ctp-pybind*
-*最后更新：2026-05-11*
+*最后更新：2026-07-10*
 

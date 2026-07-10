@@ -5,13 +5,13 @@
 
 # Disclaimer
 
-**Last updated**: September 3, 2025
+**Last updated**: July 10, 2027
 
 **Effective date**: Effective upon initial publication
 
 ## Important
 
-Before using homalos-ctp (hereinafter referred to as "this system"), please carefully read and fully understand the following terms. By using this system, you are deemed to have accepted the entire content of this disclaimer.
+Before using ctp-pybind (hereinafter referred to as "this system"), please carefully read and fully understand the following terms. By using this system, you are deemed to have accepted the entire content of this disclaimer.
 
 ## Disclaimer Content
 
