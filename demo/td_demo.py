@@ -123,6 +123,7 @@ class CtpTdApi(TdApi):
         """
         self.connect_status = False
         self.login_status = False
+        self.auth_status = False
         reason_hex = hex(int(reason))  # 错误代码转换成16进制, Error code converted to hexadecimal
         reason_msg = CtpConst.REASON_MAPPING.get(reason, f"Unknown cause({reason_hex})")
         print(f"The transaction server connection is disconnected. the reason is：{reason_msg} ({reason_hex})")
@@ -463,6 +464,7 @@ class CtpTdApi(TdApi):
             print("CtpTdApi：尝试使用地址初始化 API：{}...".format(address))
             try:
                 self.init()
+                # self.join()
                 print("CtpTdApi：init 调用成功。")
             except Exception as e_init:
                 print("CtpTdApi：初始化失败！错误：{}".format(e_init))
@@ -755,11 +757,11 @@ if __name__ == '__main__':
     print("\n🚀 开始下单测试...")
     ret_order_id = trader.send_order("SA609", "BUY_OPEN", 1358, 1)
     print(f"下单完成，订单号: {ret_order_id}")
-    
+
     # 等待一段时间观察订单状态
     print("\n⏰ 等待5秒观察订单状态...")
     time.sleep(5)
-    
+
     # 显示订单状态汇总
     trader.get_order_status_summary()
 
@@ -771,12 +773,12 @@ if __name__ == '__main__':
 
     try:
         # 保持程序运行60秒来观察订单状态变化待) ❌(失败)")
-        
+
         for i in range(12):  # 60秒分成12个5秒间隔
             time.sleep(5)
             print(f"\n⏰ 时间检查点 {i+1}/12 (已运行{(i+1)*5}秒)")
             trader.get_order_status_summary()
-            
+
     except KeyboardInterrupt:
         print("\n🛑 用户中断程序")
     finally:
