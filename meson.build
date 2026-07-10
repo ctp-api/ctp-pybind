@@ -1,7 +1,7 @@
 project(
   'homalos-ctp',
   'cpp',
-  version: '6.7.11.6',
+  version: '6.7.11.6.1',
   license: 'MIT',
   meson_version: '>=1.9.0',
   default_options: [

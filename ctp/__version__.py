@@ -9,4 +9,4 @@
 @Software   : PyCharm
 @Description: 项目版本号，用于打包发布
 """
-__version__ = "6.7.11.6"
+__version__ = "6.7.11.6.1"

@@ -1,3 +1,23 @@
+## v6.7.11.6.1
+
+## [v6.7.11.6.1] - 2026-07-10
+
+### 更新
+
+- **功能**：新增多版本批量构建脚本build_all.py，支持使用hatch build打包wheel和sdist。
+- **功能**：多版本构建脚本保留虚拟环境，可重复使用加速后续构建。
+- **功能**：修复hatch build命令参数错误（-d改为位置参数）。
+- **功能**：支持Python 3.10-3.13多版本打包发布。
+
+------
+
+### Update
+
+- **Feature:** Added multi-version build script build_all.py using hatch build.
+- **Feature:** Multi-version build script preserves virtual environments for reuse.
+- **Feature:** Fixed hatch build command argument error (-d changed to positional argument).
+- **Feature:** Added support for Python 3.10-3.13 multi-version packaging.
+
 ## v6.7.11.6
 
 ## [v6.7.11.6] - 2026-07-10
@@ -10,10 +30,8 @@
 - **功能**：更新免责声明文档，使用新的项目名称和日期。
 - **功能**：刷新所有文档文件的最后更新时间戳。
 - **功能**：修复pyproject.toml中构建工具作为运行时依赖的问题。
-- **功能**：修复版本号不一致问题（meson.build、__version__.py、CHANGELOG.md）。
 - **功能**：修复pyproject.toml中引用不存在的demo.py文件。
 - **功能**：移除demo/md_demo.py中硬编码的密码。
-- **功能**：修复docs/Disclaimer.md中的日期错误（2027->2026）。
 - **功能**：修复ctp.h中的缓冲区溢出风险、数据竞争问题，移除using namespace pybind11污染。
 - **功能**：修复hatch_build.py中使用os.getcwd()而非self.root的路径问题。
 - **功能**：修复script/generate_dll_entry.py和generate_data_type.py中的文件名注释错误。
@@ -25,8 +43,6 @@
 - **功能**：重构script/generate_api_functions.py中的重复代码。
 - **功能**：修复build.py自动安装依赖的问题。
 - **功能**：修复generate_struct.py和generate_api_functions.py中模块导入路径问题。
-- **功能**：支持Python 3.10-3.13多版本打包发布。
-- **功能**：新增多版本批量构建脚本build_all.py，使用hatch build打包。
 
 ------
 
@@ -38,10 +54,8 @@
 - **Feature:** Updated disclaimer document with new project name and dates.
 - **Feature:** Refreshed last updated timestamps across all documentation files.
 - **Feature:** Fixed build tools being listed as runtime dependencies in pyproject.toml.
-- **Feature:** Fixed version inconsistency across meson.build, __version__.py, and CHANGELOG.md.
 - **Feature:** Fixed non-existent demo.py file reference in pyproject.toml.
 - **Feature:** Removed hardcoded password from demo/md_demo.py.
-- **Feature:** Fixed date typo in docs/Disclaimer.md (2027->2026).
 - **Feature:** Fixed buffer overflow, data race issues in ctp.h, removed using namespace pybind11 pollution.
 - **Feature:** Fixed path resolution in hatch_build.py using self.root instead of os.getcwd().
 - **Feature:** Fixed incorrect filename in docstrings for generate_dll_entry.py and generate_data_type.py.
@@ -53,8 +67,6 @@
 - **Feature:** Refactored duplicated code in script/generate_api_functions.py.
 - **Feature:** Fixed build.py auto-installing dependencies via uv add.
 - **Feature:** Fixed module import path issues in generate_struct.py and generate_api_functions.py.
-- **Feature:** Added support for Python 3.10-3.13 multi-version packaging.
-- **Feature:** Added multi-version build script build_all.py using hatch build.
 
 ## v6.7.11.5
 
